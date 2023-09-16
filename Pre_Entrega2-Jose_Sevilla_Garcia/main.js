@@ -53,7 +53,50 @@ while (true) {
     }
 }
 
-//Programa de registro de gastos, el usuario puede ingresar los gastos que va teniendo por día y conseguir una suma de lo que gasto;
+//Programa de registro de gastos, el usuario puede ingresar los gastos que va teniendo por dï¿½a y conseguir una suma de lo que gasto;
+
+let totalGastos = 0;
+const gastos = [];
+
+function ingresarGasto() {
+    const montoGasto = parseFloat(prompt('Ingresa cuanto dinero gastaste:'));
+
+    if (isNaN(montoGasto) || montoGasto === null || montoGasto === 'fin') {
+        return false;
+    } else {
+        gastos.push(montoGasto);
+        return true;
+    }
+}
+
+function mostrarResumenGasto() {
+    let detallesGasto = 'Detalles de gastos:\n';
+
+    for (let i = 0; i < gastos.length; i++) {
+        detallesGasto += `Gasto ${i + 1}: $${gastos[i].toFixed(2)}\n`;
+    }
+
+    console.log('Resumen de gastos:');
+    console.log(detallesGasto);
+    console.log(`Total de gastos: $${totalGastos.toFixed(2)}`);
+  
+    alert('Resumen de gastos:\n\n' + detallesGasto + '\nTotal de gastos: $' + totalGastos.toFixed(2));
+}
+
+let continuar = true;
+
+while (continuar) {
+  continuar = ingresarGasto();
+  if (continuar) {
+    totalGastos += gastos[gastos.length - 1];
+  }
+}
+
+mostrarResumenGasto();
+
+
+
+
 
 
 
